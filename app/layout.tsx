@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "PitStop",
+  title: "CarBase",
   description: "This site helps you to have a virtual garage of yours.",
 };
 

@@ -7,6 +7,9 @@ export interface User {
   }
   
   export interface Car {
+    carType: any;
+    company: any;
+    dealer: any;
     id: string;
     title: string;
     description: string;

@@ -12,9 +12,9 @@ interface CarCardProps {
   onDelete: (id: string) => void;
 }
 
-const CarCard = ({ car, onEdit, onDelete,onClick }: CarCardProps) => {
+const CarCard = ({ car, onEdit, onDelete, onClick }: CarCardProps) => {
   return (
-    <Card  className="w-full max-w-sm hover:shadow-lg transition-shadow">
+    <Card className="w-full max-w-sm hover:shadow-lg transition-shadow">
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           <span className="truncate">{car.title}</span>
@@ -37,20 +37,27 @@ const CarCard = ({ car, onEdit, onDelete,onClick }: CarCardProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div onClick={()=>onClick(car)} className="aspect-video relative mb-4">
+        <div onClick={() => onClick(car)} className="aspect-video relative mb-4">
           <img
-            src={car.images[0] || "/api/placeholder/400/300"}
+            src={car.images?.[0] || "/api/placeholder/400/300"}
             alt={car.title}
             className="rounded-lg object-cover w-full h-full"
           />
         </div>
         <p className="text-sm text-gray-600 line-clamp-2 mb-4 dark:text-white">
-          {car.description}
+          {car.description || 'No description available'}
         </p>
         <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary">{car.tags.carType}</Badge>
-          <Badge variant="secondary">{car.tags.company}</Badge>
-          <Badge variant="secondary">{car.tags.dealer}</Badge>
+          {/* Set custom styling for badges */}
+          {car.carType && (
+            <Badge variant="outline" className="bg-blue-100 text-blue-800">{car.carType}</Badge>
+          )}
+          {car.company && (
+            <Badge variant="outline" className="bg-green-100 text-green-800">{car.company}</Badge>
+          )}
+          {car.dealer && (
+            <Badge variant="outline" className="bg-yellow-100 text-yellow-800">{car.dealer}</Badge>
+          )}
         </div>
       </CardContent>
     </Card>

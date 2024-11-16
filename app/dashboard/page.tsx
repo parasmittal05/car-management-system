@@ -62,47 +62,51 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">My Garage</h1>
-        <Button
-          onClick={() => router.push('/cars/new')}
-        >
-          <Plus className="mr-2 h-4 w-4" /> Add New Car
-        </Button>
-      </div>
+    <div className="relative bg-black min-h-screen">
+      <div className="absolute inset-0 bg-black opacity-40"></div> {/* Optional Overlay */}
+      <div className="relative z-10 container mx-auto px-4 py-8">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold text-white mb-4 sm:mb-0">My Garage</h1>
+          <Button
+            onClick={() => router.push('/cars/new')}
+            className="w-full sm:w-auto"
+          >
+            <Plus className="mr-2 h-4 w-4" /> Add New Car
+          </Button>
+        </div>
 
-      <div className="mb-6">
-        <Input
-          type="search"
-          placeholder="Search cars..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="max-w-md"
-        />
-      </div>
+        <div className="mb-6">
+          <Input
+            type="search"
+            placeholder="Search cars..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="max-w-md mx-auto sm:mx-0"
+          />
+        </div>
 
-      {isLoading ? (
-        <div className="text-center">Loading...</div>
-      ) : (
-        <>
-          {cars.length === 0 ? (
-            <div className="text-center">No cars found.</div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredCars.map((car) => (
-                <CarCard
-                  key={car.id}
-                  car={car}
-                  onEdit={() => router.push(`/cars/modify/${car.id}`)}
-                  onClick={() => router.push(`/cars/modify/${car.id}`)}
-                  onDelete={handleDelete}
-                />
-              ))}
-            </div>
-          )}
-        </>
-      )}
+        {isLoading ? (
+          <div className="text-center text-white">Loading...</div>
+        ) : (
+          <>
+            {cars.length === 0 ? (
+              <div className="text-center text-white">No cars found.</div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredCars.map((car) => (
+                  <CarCard
+                    key={car.id}
+                    car={car}
+                    onEdit={() => router.push(`/cars/modify/${car.id}`)}
+                    onClick={() => router.push(`/cars/modify/${car.id}`)}
+                    onDelete={handleDelete}
+                  />
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

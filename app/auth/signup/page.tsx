@@ -54,8 +54,15 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
-      <Card className="w-full max-w-md">
+    <div 
+      className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1613234259978-98229fb76d9d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FyJTIwY29sbGVjdGlvbnxlbnwwfHwwfHx8MA%3D%3D")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <Card className="w-full max-w-md bg-black bg-opacity-80">
         <CardHeader>
           <CardTitle className="text-3xl font-extrabold text-center">
             Create your account
