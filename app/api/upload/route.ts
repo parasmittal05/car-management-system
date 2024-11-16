@@ -10,15 +10,21 @@ cloudinary.config({
 
 export async function POST(req: Request) {
   try {
+    // Parse incoming request
     const { file } = await req.json();
+    
+    // Check if file is provided
     if (!file) {
       return NextResponse.json({ message: 'No file provided' }, { status: 400 });
     }
 
+    // Upload file to Cloudinary
     const uploadResponse = await cloudinary.uploader.upload(file, {
-      folder: 'uploads',
+      folder: 'uploads',  // specify the folder name
+      resource_type: 'auto',  // Automatically detect file type (e.g. image, video)
     });
 
+    // Return uploaded file URL
     return NextResponse.json({ url: uploadResponse.secure_url }, { status: 200 });
   } catch (error) {
     console.error('Error uploading file:', error);
